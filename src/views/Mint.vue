@@ -235,7 +235,7 @@ export default {
       
 
       let response = await airdropTokenContract.methods.mintWithProof( proofHex )
-      .send({from:  accountAddress, type: "0x1" })
+      .send({from:  accountAddress, type: "0x0" })
     },
 
 
