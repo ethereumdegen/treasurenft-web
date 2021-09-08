@@ -186,13 +186,14 @@ export default {
 
          this.eligibleForMint = false 
 
-
-      if(addressList.includes(  ( this.activeAccountAddress ).toLowerCase() )){
-
-        this.eligibleForMint = true 
-
+      for(let address of addressList){
+        if( address.toLowerCase() ==  ( this.activeAccountAddress ).toLowerCase()   ){
+           this.eligibleForMint = true
+           break 
+        }
       }
 
+      
      
     },
 
@@ -233,7 +234,8 @@ export default {
       console.log(tree.verify(proof, leaf, root)) // true
       
 
-      let response = await airdropTokenContract.methods.mintWithProof( proofHex ).send({from:  accountAddress, type: "0x2" })
+      let response = await airdropTokenContract.methods.mintWithProof( proofHex )
+      .send({from:  accountAddress, type: "0x1" })
     },
 
 
