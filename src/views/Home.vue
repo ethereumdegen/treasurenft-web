@@ -39,9 +39,8 @@
          </div>
          <div class="   md:w-1/2  w-full  text-center ">
            
-             
-              <img src="@/assets/images/coinpass.png" class="pl-4 py-16" width="240px" style="margin:0 auto;" />
-
+              <FrontPageMedia />
+               
 
          </div>
        </div>
