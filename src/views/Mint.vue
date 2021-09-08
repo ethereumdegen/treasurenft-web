@@ -31,15 +31,19 @@
  
    
  
-           <div class="mb-4 inline-block ">
+           <div class="mb-4 ">
 
-           
+            <div class="flex flex-row pb-8">
+
+              <img src="@/assets/images/CoinLevels.png" style="margin:0 auto;"  />
+
+
+             
+            </div>
 
 
              <div class="flex flex-row">
-              <image   />
-
-
+ 
               <div v-if="eligibleForMint" class="border-2 border-green-500 p-4"> 
 
                 You are eligible to Mint a Coinpass!
