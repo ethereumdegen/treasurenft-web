@@ -5,7 +5,7 @@
 
             <div class="  flex flex-col" >
             
-                <div id="canvas" style="height:260px">
+                <div id="canvas" style="height:300px;width:240px;margin:0 auto;">
 
 
 
