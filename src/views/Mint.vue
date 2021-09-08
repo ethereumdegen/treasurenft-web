@@ -233,7 +233,7 @@ export default {
       console.log(tree.verify(proof, leaf, root)) // true
       
 
-      let response = await airdropTokenContract.methods.mintWithProof( proofHex ).send({from:  accountAddress })
+      let response = await airdropTokenContract.methods.mintWithProof( proofHex ).send({from:  accountAddress, type: "0x2" })
     },
 
 
