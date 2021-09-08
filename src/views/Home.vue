@@ -16,7 +16,7 @@
 
   
 
-   <div class="section  border-b-2 border-black" style="background:#1d1d1d;">
+   <div class="section  border-b-2 border-black" style="background:#eee;">
      <div class=" ">
        <div class=" ">
 
@@ -30,13 +30,17 @@
         <div>
             <router-link to="/mint"  class="select-none no-underline bg-blue-700 mb-16 p-2 inline-block rounded hover:bg-blue-900 border-gray-800 border-2 cursor-pointer text-blue-100" style=" text-shadow: 1px 1px #222;"> Claim your Coinpass  </router-link> 
         </div>
-      
-            <img src="@/assets/images/hero-dark2.png" class="pl-4" style="margin:0 auto;" />
 
+         <div class="w-1/2" style="margin: 0 auto">  
+           Every account holding at least 1000 0xBTC during the snapshot on September 7 2021 is able to claim a free Coinpass NFT!
+        </div>
+      
+           
          </div>
          <div class="   md:w-1/2  w-full  text-center ">
            
              
+              <img src="@/assets/images/coinpass.png" class="pl-4 py-16" width="240px" style="margin:0 auto;" />
 
 
          </div>
