@@ -19,9 +19,9 @@
      <div class="py-16 w-container">
         
        <div class="  px-2 ">
-          <div class="text-lg font-bold mb-4"> Give to the Guild  </div>
+          <div class="text-lg font-bold mb-4"> Mint your Coinpass  </div>
 
-          <div class="text-sm   mb-8"> Add 0xBTC to the Guild pool, distributing it to members equally  </div>
+          <div class="text-sm   mb-8">  Your Mineable Token Coinpass is an NFT which changes form based on how much 0xBitcoin you have in your wallet.     </div>
            
           <div  class=" " v-if="!connectedToWeb3">
               <NotConnectedToWeb3 />
@@ -37,26 +37,9 @@
 
 
              <div class="flex flex-row">
-              <label   class="block text-md font-medium font-bold text-gray-800  ">Give Amount</label>
-                  <div class="flex-grow"></div>
-                <label   class="block text-xs font-xs text-blue-500  ">Balance:   {{tokenBalanceFormatted}}</label>
-
+              <image   />
             </div>
-              <div class="flex flex-row">
-              <div class="w-f ">
-                    <input type="number"   v-model="formInputs.currencyAmountFormatted"  class="text-gray-900 border-2 border-black font-bold px-4 text-xl focus:ring-indigo-500 focus:border-indigo-500 block w-full py-4 pl-7 pr-12   border-gray-300 rounded-md" placeholder="0.00">
-                </div> 
-                 
-              </div>
-
-
-                <div class="flex flex-row">
-              <div class="bg-blue-200 p-4 w-full mt-4 ">
-                    You will receive no guild shares for this contribution.
-                </div> 
-                 
-              </div>
-           
+               
            
             </div>
 
@@ -69,7 +52,7 @@
               
  
                  <div class="  p-4">
-                     <div @click="giveClicked" class="select-none bg-blue-700 p-2 inline-block rounded hover:bg-blue-900 border-gray-800 border-2 cursor-pointer text-white" style=" text-shadow: 1px 1px #222;"> Give </div>
+                     <div @click="mintClicked" class="select-none bg-blue-700 p-2 inline-block rounded hover:bg-blue-900 border-gray-800 border-2 cursor-pointer text-white" style=" text-shadow: 1px 1px #222;"> Mint </div>
                 </div> 
 
           </div>
@@ -109,9 +92,19 @@ import TabsBar from './components/TabsBar.vue';
 import GenericTable from './components/GenericTable.vue';
 import GenericDropdown from './components/GenericDropdown.vue';
   
-const GuildContractABI = require('../contracts/MinersGuild.json')
 
-import FrontendHelper from '../js/frontend-helper.js'
+const { MerkleTree } = require('merkletreejs')
+
+
+const keccak256 = require('keccak256');
+
+//const GuildContractABI = require('../contracts/MinersGuild.json')
+const AirdropTokenABI = require('../contracts/AirdropToken.json')
+ 
+
+  const addressList = require('../config/airdropList.json')
+
+
 
 
 var balanceInterval
@@ -171,25 +164,43 @@ export default {
   methods: {
 
  
-    async giveClicked(){
-      console.log('start give ')
+    async mintClicked(){
+      console.log('start mint ')
 
 
       let accountAddress = this.web3Plug.getActiveAccountAddress()
 
       let chainId = this.web3Plug.getActiveNetId()
-      let guildContractAddress = this.web3Plug.getContractDataForNetworkID(chainId)['minersguild'].address
+      let airdropTokenContractAddress = this.web3Plug.getContractDataForNetworkID(chainId)['airdroptoken'].address
 
-       let tokenContractAddress = this.web3Plug.getContractDataForNetworkID(chainId)['0xbitcoin'].address
+      let tokenContractAddress = this.web3Plug.getContractDataForNetworkID(chainId)['0xbitcoin'].address
 
       let currencyDecimals  = 8 
       let currencyAmountRaw = MathHelper.formattedAmountToRaw(this.formInputs.currencyAmountFormatted,currencyDecimals) 
  
-      let tokenContract = this.web3Plug.getTokenContract( tokenContractAddress );
+      let airdropTokenContract = this.web3Plug.getCustomContract( AirdropTokenABI, airdropTokenContractAddress );
 
     
 
-      let response = await tokenContract.methods.transfer( guildContractAddress, currencyAmountRaw ).send({from:  accountAddress })
+
+      const leaves = addressList.map(x => keccak256(x))
+      const tree = new MerkleTree(leaves, keccak256, {sortPairs: true})
+      const root = tree.getRoot().toString('hex')
+
+      const hexRoot = tree.getHexRoot()
+      
+      console.log('airdrop root is ', hexRoot)
+
+       
+      const leaf = keccak256(accountAddress)
+      const proof = tree.getProof(leaf)
+
+      const proofHex = tree.getHexProof(leaf)
+
+      console.log(tree.verify(proof, leaf, root)) // true
+      
+
+      let response = await airdropTokenContract.methods.mintWithProof( proofHex ).send({from:  accountAddress })
     },
 
 

@@ -4,12 +4,8 @@ import Router from 'vue-router'
 
 import Home from './views/Home.vue'
  
-import Stake from './views/Stake.vue'
-  
-import Unstake from './views/Unstake.vue'
-  
 import Contribute from './views/Contribute.vue'
-import Give from './views/Give.vue'
+import Mint from './views/Mint.vue'
 
 import Collection from './views/Collection.vue'
   
@@ -30,18 +26,7 @@ export default new Router({
       component: Home
     } ,
 
-    
-
-    {
-      path: '/stake',
-      name: 'stake',
-      component: Stake
-    } ,
-    {
-      path: '/unstake',
-      name: 'unstake',
-      component: Unstake
-    } ,
+     
 
     {
       path: '/members',
@@ -54,9 +39,9 @@ export default new Router({
       component: Contribute
     } ,
     {
-      path: '/give',
-      name: 'give',
-      component: Give
+      path: '/mint',
+      name: 'mint',
+      component: Mint
     } ,
 
 

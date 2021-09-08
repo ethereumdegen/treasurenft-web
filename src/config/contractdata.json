@@ -16,6 +16,21 @@
 
 
   },
+
+
+  "rinkeby":{
+    
+    "contracts":{
+      "0xbitcoin":{"name":"0xBTC","address":"0xab89a7742cb10e7bce98540fd05c7d731839cf9f","decimals":8 },
+ 
+      "airdroptoken":{"name":"AirdropToken","address":"0xad04ed086fe258d77ae59ae507b0465c0cce5945","decimals":8 }
+ 
+ 
+    }
+
+
+  },
+
   "goerli":{
     
     "contracts":{
