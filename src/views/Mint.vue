@@ -21,7 +21,7 @@
        <div class="  px-2 ">
           <div class="text-lg font-bold mb-4"> Mint your Coinpass  </div>
 
-          <div class="text-sm   mb-8">  Your Mineable Token Coinpass is an NFT which changes form based on how much 0xBitcoin you have in your wallet.     </div>
+          <div class="text-sm   mb-8">  Your Mineable Token Coinpass is an NFT which changes color based on how much 0xBitcoin you have in your wallet.  It can act like a beacon for future airdrops and rewards that are developed by the community.    </div>
            
           <div  class=" " v-if="!connectedToWeb3">
               <NotConnectedToWeb3 />
@@ -38,6 +38,20 @@
 
              <div class="flex flex-row">
               <image   />
+
+
+              <div v-if="eligibleForMint" class="border-2 border-green-500 p-4"> 
+
+                You are eligible to Mint a Coinpass!
+
+              </div>
+
+
+               <div v-if="!eligibleForMint" class="border-2 border-red-500 p-4"> 
+
+                You are not eligible to Mint a Coinpass.
+
+              </div>
             </div>
                
            
@@ -48,11 +62,11 @@
 
           </div>
 
-           <div class="py-4" v-if=" connectedToWeb3 && !submitComplete">
+           <div class="py-4" v-if=" connectedToWeb3 && eligibleForMint && !submitComplete">
               
  
                  <div class="  p-4">
-                     <div @click="mintClicked" class="select-none bg-blue-700 p-2 inline-block rounded hover:bg-blue-900 border-gray-800 border-2 cursor-pointer text-white" style=" text-shadow: 1px 1px #222;"> Mint </div>
+                     <div @click="mintClicked" class="select-none bg-blue-700 p-2 inline-block rounded hover:bg-blue-900 border-gray-800 border-2 cursor-pointer text-white" style=" text-shadow: 1px 1px #222;"> Mint My Coinpass </div>
                 </div> 
 
           </div>
@@ -77,7 +91,7 @@
 
 <script>
 
-
+import web3utils from 'web3-utils'
 
 import NotConnectedToWeb3 from './components/NotConnectedToWeb3.vue'
 
@@ -122,7 +136,8 @@ export default {
       tokenBalanceFormatted: null,
        
       connectedToWeb3: false ,
-      submitComplete:false
+      submitComplete:false,
+      eligibleForMint:false
     }
   },
 
@@ -137,6 +152,8 @@ export default {
         this.connectedToWeb3 = this.web3Plug.connectedToWeb3()
         
             await this.fetchBalance()
+
+            await this.checkEligibility()
          
       }.bind(this));
    this.web3Plug.getPlugEventEmitter().on('error', function(errormessage) {
@@ -162,6 +179,22 @@ export default {
     clearInterval(balanceInterval)
   },
   methods: {
+
+    async checkEligibility(){
+
+      console.log('check',this.activeAccountAddress)
+
+         this.eligibleForMint = false 
+
+
+      if(addressList.includes(  ( this.activeAccountAddress ).toLowerCase() )){
+
+        this.eligibleForMint = true 
+
+      }
+
+     
+    },
 
  
     async mintClicked(){

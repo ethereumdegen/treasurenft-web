@@ -1,4 +1,3 @@
-# The Guild 
+# Mineable Token Coinpass
 
- 
- Neutral DAO for the 0xBitcoin community 
+ NFT for Mineable Tokens 
