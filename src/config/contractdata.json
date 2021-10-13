@@ -4,7 +4,7 @@
 
     "contracts":{
       "0xbitcoin":{"name":"0xBTC","address":"0xb6ed7644c69416d67b522e20bc294a9a9b405b31","decimals":8 },
-      "airdroptoken":{"name":"AirdropToken","address":"0x55d56228875d35c034befe1461c22c51179a6386","decimals":8 },
+      "treasurenft":{"name":"TreasureNFT","address":"0x12701a6fad5bbf94e632936b2f52a29860288298","decimals":8 },
  
       
       "minersguild":{"address":"0x167152a46e8616d4a6892a6afd8e52f060151c70"} 
@@ -23,7 +23,7 @@
     "contracts":{
       "0xbitcoin":{"name":"0xBTC","address":"0xab89a7742cb10e7bce98540fd05c7d731839cf9f","decimals":8 },
  
-      "airdroptoken":{"name":"AirdropToken","address":"0x738fad6b78fd8bdd560cc9641f346ed11e9b62d8","decimals":8 }
+      "treasurenft":{"name":"TreasureNFT","address":"","decimals":8 }
  
  
     }
@@ -36,31 +36,12 @@
     "contracts":{
       "0xbitcoin":{"name":"0xBTC","address":"0xab89a7742cb10e7bce98540fd05c7d731839cf9f","decimals":8 },
  
-      "guildreserve":{"name":"GuildReserve","address":"0x7b5bb27e919aa4baee33e262fb6bc04ff88350c0","decimals":8 },
+      "treasurenft":{"name":"TreasureNFT","address":"","decimals":8 }
  
-
-      "minersguild":{"address":"0x9cb4a5c7020093503007729be00b60201725d1b5"}
-
     }
 
 
-  },
-
-  "matic":{
-    
-    "contracts":{
-      "0xbitcoin":{"name":"0xBTC","address":"0x71b821aa52a49f32eed535fca6eb5aa130085978","decimals":8 },
- 
-      "guildreserve":{"name":"GuildReserve","address":"0x395fA4Afdb09f54031C5A0e02706AF283B4e5594","decimals":8 },
- 
-
-      "minersguild":{"address":"0x5b98164b36eE6E9d2C4BC6cC156DE7Ad052838Ed"}
-
-    }
-
-
-  }
-
+  } 
 
 
 }

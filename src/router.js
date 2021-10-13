@@ -3,13 +3,9 @@ import Router from 'vue-router'
 
 
 import Home from './views/Home.vue'
- 
-import Contribute from './views/Contribute.vue'
-import Mint from './views/Mint.vue'
-
-import Collection from './views/Collection.vue'
   
-import Members from './views/Members.vue'
+import Collection from './views/Collection.vue'
+   
  
 import NotFound from './views/NotFound.vue'
 
@@ -27,23 +23,7 @@ export default new Router({
     } ,
 
      
-
-    {
-      path: '/members',
-      name: 'members',
-      component: Members
-    } ,
-    {
-      path: '/contribute',
-      name: 'contribute',
-      component: Contribute
-    } ,
-    {
-      path: '/mint',
-      name: 'mint',
-      component: Mint
-    } ,
-
+ 
 
     {
       path: '/collection',
