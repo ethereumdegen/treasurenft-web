@@ -62,7 +62,7 @@
 
 
                <div class="text-white text-xs my-2" v-if="signedInToWeb3">
-                    {{ totalSupply }} minted of 420 max.
+                    {{ totalSupply }} minted of 1024 max.
               </div>
                  
 
