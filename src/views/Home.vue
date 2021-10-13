@@ -61,7 +61,7 @@
               </div>
 
 
-               <div class="text-white text-xs my-2">
+               <div class="text-white text-xs my-2" v-if="signedInToWeb3">
                     {{ totalSupply }} minted of 420 max.
               </div>
                  
